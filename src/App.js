@@ -20,16 +20,16 @@ function App() {
   const handleBody = (data) => {
     setBody(data.target.value)
   }
-  const getId = (data) => {
-    data.preventDefault()
-    setDataId([...dataId, id])
-    setId("")
-    console.log(dataId)
-    // console.log(dataId)
-  }
-  const getPost = () => {
-    setPost([...post, cobaPost])
-  }
+  // const getId = (data) => {
+  //   data.preventDefault()
+  //   setDataId([...dataId, id])
+  //   setId("")
+  //   console.log(dataId)
+  //   // console.log(dataId)
+  // }
+  // const getPost = () => {
+  //   setPost([...post, cobaPost])
+  // }
 
   // console.log(cobaPost)
 
@@ -37,14 +37,14 @@ function App() {
 
   const createPosts = (e) => {
     e.preventDefault()
-    getPost()
+    // getPost()
     setId("")
     setTitle("")
     setBody("")
     axios.post(url, {
       userId: id,
-      title: title,
-      body: body
+      title,
+      body
     },
       {
         headers: {
@@ -52,10 +52,12 @@ function App() {
         }
       })
       .then((response) => {
-        setCobaPost(response.data)
-        console.log(post)
-        console.log("post>>", post.length)
-        console.log("cobaPost>>", cobaPost)
+        console.log(response.data);
+        setPost([...post, response.data]);
+        setCobaPost(response.data);
+        // console.log(post)
+        // console.log("post>>", post.length)
+        // console.log("cobaPost>>", cobaPost)
       })
       .catch((error) => {
         console.log(error)
@@ -84,29 +86,28 @@ function App() {
           <input id='inputName' type="text" value={title} onChange={handleTitle} />
           <label htmlFor="inputBody">Body</label>
           <input id='inputBody' type="text" value={body} onChange={handleBody} />
-          <button onClick={getId} className='submit'>Submit</button>
+          {/* <button onClick={getId} className='submit'>Submit</button> */}
           <button onClick={createPosts} className='createPost'>Create Post</button>
           {/* <h2>{id}</h2> */}
-          <ol>
-            {dataId.map((data,index) => (
+          {/* <ol>
+            {dataId.map((data, index) => (
               <li key={index}>{data}</li>
             ))}
-          </ol>
+          </ol> */}
         </form>
       </div>
-      <div className='hasilPost'>
+      {cobaPost ? <div className='hasilPost'>
         <h2>id: {cobaPost.id}</h2>
         <h2>user id: {cobaPost.userId}</h2>
         <h2>title: {cobaPost.title}</h2>
         <h2>body: {cobaPost.body}</h2>
-
-
-        <ol>
-          {post.map((data,index) => (
-            <li key={index}>{data.title}</li>
-          ))}
-        </ol>
-      </div>
+      </div> : null}
+      
+      <ol>
+        {post.map((data, index) => (
+          <li key={index}>{data.title}</li>
+        ))}
+      </ol>
       {/* {cobaPost.map((postData) => (
       <h2>{postData.title}</h2>
     ))} */}
