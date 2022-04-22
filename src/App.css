@@ -1,5 +1,15 @@
 .App {
-  text-align: center;
+  display: flex;
+  /* text-align: center; */
+}
+
+#form-test {
+  display: flex;
+  flex-direction: column;
+  /* align-items: center; */
+}
+.submit {
+  margin-top: 10px;
 }
 
 .App-logo {
@@ -36,3 +46,18 @@
     transform: rotate(360deg);
   }
 }
+
+body {
+  margin: 0;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
+    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
+    sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+code {
+  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
+    monospace;
+}
+
